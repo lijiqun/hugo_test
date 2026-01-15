@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <title>如何使用Hugo发布新文章</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        header { background: #333; color: white; padding: 20px; margin: -20px -20px 20px -20px; }
+        h1 { margin: 0; }
+        nav a { color: white; margin-right: 15px; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        .post { border-bottom: 1px solid #eee; padding: 15px 0; }
+        .post-meta { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Hugo Demo</h1>
+        <nav><a href="/">Home</a></nav>
+    </header>
+    
+<article class="post">
+    <h2>如何使用Hugo发布新文章</h2>
+    <div class="post-meta">Published: 2026-01-15</div>
+    <div><p>Hugo 是一个快速的静态网站生成器。下面介绍如何使用 Hugo 发布新文章。</p>
+<h2 id="创建新文章">创建新文章</h2>
+<p>使用 <code>hugo new content</code> 命令创建新文章：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new content posts/my-new-post.md
+</span></span></code></pre></div><p>这会在 <code>content/posts/</code> 目录下创建一个 Markdown 文件。</p>
+<h2 id="编辑文章">编辑文章</h2>
+<p>打开创建的文件，你会看到 Front Matter（前置元数据）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">+++</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">date</span> = <span style="color:#e6db74">&#39;2026-01-15T10:01:26+08:00&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">draft</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#39;文章标题&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">+++</span>
+</span></span></code></pre></div><h3 id="front-matter-说明">Front Matter 说明</h3>
+<ul>
+<li><code>title</code>: 文章标题</li>
+<li><code>date</code>: 发布日期</li>
+<li><code>draft</code>: 是否为草稿
+<ul>
+<li><code>true</code>: 草稿状态，构建时不会包含</li>
+<li><code>false</code>: 发布状态，会显示在网站上</li>
+</ul>
+</li>
+</ul>
+<p>在 Front Matter 下方使用 Markdown 语法编写文章内容。</p>
+<h2 id="发布文章">发布文章</h2>
+<h3 id="方式一修改-draft-状态">方式一：修改 draft 状态</h3>
+<p>将 <code>draft = true</code> 改为 <code>draft = false</code>，然后启动服务器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo server
+</span></span></code></pre></div><h3 id="方式二构建时包含草稿">方式二：构建时包含草稿</h3>
+<p>如果想预览草稿文章，可以使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo server --buildDrafts
+</span></span></code></pre></div><h2 id="本地预览">本地预览</h2>
+<p>启动开发服务器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 基本启动</span>
+</span></span><span style="display:flex;"><span>hugo server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 绑定所有网卡（局域网访问）</span>
+</span></span><span style="display:flex;"><span>hugo server --bind 0.0.0.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定端口</span>
+</span></span><span style="display:flex;"><span>hugo server --port <span style="color:#ae81ff">1313</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 包含草稿</span>
+</span></span><span style="display:flex;"><span>hugo server --buildDrafts
+</span></span></code></pre></div><p>访问 http://localhost:1313 查看效果。</p>
+<h2 id="构建静态网站">构建静态网站</h2>
+<p>准备发布时，生成静态文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo
+</span></span></code></pre></div><p>静态文件会生成到 <code>public/</code> 目录，可以将该目录部署到任何静态网站托管服务。</p>
+<h2 id="常用命令汇总">常用命令汇总</h2>
+<table>
+  <thead>
+      <tr>
+          <th>命令</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>hugo new content &lt;path&gt;</code></td>
+          <td>创建新内容</td>
+      </tr>
+      <tr>
+          <td><code>hugo server</code></td>
+          <td>启动开发服务器</td>
+      </tr>
+      <tr>
+          <td><code>hugo server --buildDrafts</code></td>
+          <td>启动服务器并包含草稿</td>
+      </tr>
+      <tr>
+          <td><code>hugo</code></td>
+          <td>构建生产版本的静态网站</td>
+      </tr>
+      <tr>
+          <td><code>hugo -D</code></td>
+          <td>构建时包含草稿</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="小贴士">小贴士</h2>
+<ol>
+<li>文章放在 <code>content/posts/</code> 目录下会自动归档到博客文章</li>
+<li>使用 Markdown 语法编写内容</li>
+<li>保存文件后浏览器会自动刷新显示更改</li>
+<li>Front Matter 使用 TOML 格式（用 <code>+++</code> 包围）</li>
+</ol>
+<p>祝写作愉快！</p>
+</div>
+</article>
+
+</body>
+</html>

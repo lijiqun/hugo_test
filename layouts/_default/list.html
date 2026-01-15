@@ -1,0 +1,11 @@
+{{ define "main" }}
+<h2>Posts</h2>
+{{ range .Pages }}
+<article class="post">
+    <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+    <div class="post-meta">Published: {{ .Date.Format "2006-01-02" }}</div>
+</article>
+{{ else }}
+<p>No posts yet.</p>
+{{ end }}
+{{ end }}

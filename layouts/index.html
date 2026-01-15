@@ -1,0 +1,13 @@
+{{ define "main" }}
+<h2>Welcome to {{ .Site.Title }}</h2>
+<p>This is a Hugo demo site running in development mode.</p>
+<h3>Recent Posts</h3>
+{{ range first 5 (where .Site.RegularPages "Type" "posts") }}
+<article class="post">
+    <h4><a href="{{ .Permalink }}">{{ .Title }}</a></h4>
+    <div class="post-meta">{{ .Date.Format "2006-01-02" }}</div>
+</article>
+{{ else }}
+<p>No posts yet. Create your first post with: <code>hugo new content posts/my-post.md</code></p>
+{{ end }}
+{{ end }}
