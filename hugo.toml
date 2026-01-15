@@ -1,4 +1,4 @@
-baseURL = 'http://localhost:1313/'
-languageCode = 'en-us'
-title = 'My Hugo Demo'
+baseURL = 'https://lijiqun.github.io/hugo_test/'
+languageCode = 'zh-cn'
+title = '我的Hugo博客'
 # theme = 'ananke'  # Using custom layouts
